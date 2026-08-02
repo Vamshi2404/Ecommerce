@@ -18,7 +18,11 @@ const App = () => {
     setCartList(prevCartList => [...prevCartList, product])
   }
 
-  const deleteCartItem = () => {}
+  const deleteCartItem = productId => {
+    setCartList(prevCartList =>
+      prevCartList.filter(item => item.id !== productId),
+    )
+  }
   return (
     <BrowserRouter>
       <CartContext

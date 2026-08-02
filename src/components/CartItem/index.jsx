@@ -1,11 +1,16 @@
+import {use} from 'react'
+
+import CartContext from '../../context/CartContext'
 import {BsPlusSquare, BsDashSquare} from 'react-icons/bs'
-// import {AiFillCloseCircle} from 'react-icons/ai'
+import {AiFillCloseCircle} from 'react-icons/ai'
 
 import './index.css'
 
 const CartItem = props => {
   const {cartItemDetails} = props
   const {title, brand, quantity, price, imageUrl} = cartItemDetails
+  const value = use(CartContext)
+  const {deleteCartItem} = value
 
   return (
     <li className="cart-item">
@@ -31,9 +36,13 @@ const CartItem = props => {
           </button>
         </div>
       </div>
-      {/* <button className="delete-button" type="button">
+      <button
+        className="delete-button"
+        type="button"
+        onClick={() => deleteCartItem(cartItemDetails.id)}
+      >
         <AiFillCloseCircle color="#616E7C" size={20} />
-       </button> */}
+      </button>
     </li>
   )
 }
